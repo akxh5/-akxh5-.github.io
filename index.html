@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dattva-Yaan</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Lora', serif; /* Premium and elegant style */
+            background-color: #e9ecef; /* Updated color scheme */
+            color: #333; /* Improved readability */
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        section {
+            padding: 80px 20px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+            scroll-margin-top: 80px;
+        }
+
+        h1, h2, h3 {
+            font-weight: 700;
+            margin: 0;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin: 40px 0;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin: 10px 0;
+        }
+
+        p {
+            font-size: 1.125rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+
+        /* Fixed Title and Logo */
+        .header-logo {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .header-logo img {
+            width: 50px;
+            margin-right: 15px;
+        }
+
+        .header-logo h1 {
+            font-size: 1.5rem;
+            color: #333; /* Logo text color */
+        }
+
+        /* Navigation Menu */
+        .nav-menu {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            padding: 15px 25px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .nav-menu a {
+            color: #333;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #007bff;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: url('your-image-url.jpg') no-repeat center center/cover;
+            position: relative;
+        }
+
+        .hero h1 {
+            color: #f9fafc;
+            text-transform: uppercase;
+        }
+
+        /* Core Members Section */
+        .core-members {
+            background-color: #f7f7f7;
+            padding: 60px 0;
+        }
+
+        .core-members-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .member-card {
+            width: 250px;
+            text-align: center;
+            margin: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .member-card:hover {
+            transform: scale(1.05);
+        }
+
+        .member-card img {
+            width: 100%;
+            border-radius: 10px 10px 0 0;
+        }
+
+        /* Clients Section */
+        .clients {
+            background-color: #fff;
+            padding: 60px 0;
+        }
+
+        .clients-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .client-card {
+            width: 250px;
+            text-align: center;
+            margin: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .client-card img {
+            width: 150px;
+            margin-bottom: 10px;
+        }
+
+        .client-card p {
+            margin: 10px 0;
+            font-size: 1rem;
+        }
+
+        /* Contact Us Section */
+        .contact {
+            background-color: #f7f7f7;
+            padding: 60px 20px;
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .contact-form button {
+            padding: 15px 30px;
+            border: none;
+            background-color: #007bff; /* Fixed button color */
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        .contact-form button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Footer with Social Media Icons */
+        footer {
+            padding: 20px;
+            text-align: center;
+            background-color: #333;
+            color: #fff;
+        }
+
+        .social-icons {
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            margin: 0 10px;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            transform: scale(1.2);
+        }
+
+        .social-icons img {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Scroll Trigger Animations */
+        .scroll-visible {
+            opacity: 1 !important;
+            transform: none !important;
+        }
+
+        /* Preloader styles */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #f7f7f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        .loader {
+            border: 5px solid #ccc;
+            border-top: 5px solid #007bff;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Fixed Logo and Title -->
+    <div class="header-logo">
+        <img src="your-logo-url.png" alt="Dattva-Yaan Logo">
+        <h1>Dattva-Yaan</h1>
+    </div>
+
+    <!-- Navigation Menu -->
+    <div class="nav-menu">
+        <a href="#about">About Us</a>
+        <a href="#clients">Our Clients</a>
+        <a href="#core-members">Core Members</a>
+        <a href="#contact">Contact Us</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div>
+            <h1>Dattva-Yaan</h1>
+            <p>Bringing Manufacturers To The Digital Domain</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <h2>About Us</h2>
+        <p>At Dattva Yaan, we’re a passionate team dedicated to helping manufacturers grow. We know the challenges of standing out in today’s market, and we’re here to simplify the journey. From creating impactful marketing campaigns to streamlining your supply chain, we take care of the details so you can focus on what you do best — making great products.
+    Whether you’re a small business or a large manufacturer, we offer tailored solutions that drive growth and efficiency. Let’s work together to take your business to new heights!</p>
+    </section>
+
+    <!-- Clients Section -->
+<section id="clients" class="clients">
+    <h2>Our Clients</h2>
+    <div class="clients-grid">
+        <!-- Client 1 -->
+        <div class="client-card">
+            <!-- Added anchor tag for Client 1 with appropriate href attribute -->
+            <a href="https://jugaadmart.com/" target="_blank">
+                <img src="client1-logo.jpg" alt="Client 1">
+            </a>
+            <p>JugaadMart is a local manufacturer of innovative household products that makes your day-to-day household chores easier.</p>
+        </div>
+        
+        <!-- Client 2 -->
+        <div class="client-card">
+            <!-- Added anchor tag for Client 2 with appropriate href attribute -->
+            <a href="https://theoldperfumehouse.com/" target="_blank">
+                <img src="client2-logo.jpg" alt="Client 2">
+            </a>
+            <p>The Old Perfume House specializes in manufacturing exquisite fragrances and has a inhouse manufacturing unit.</p>
+        </div>
+        
+        <!-- Client 3 -->
+        <div class="client-card">
+            <!-- Added anchor tag for Client 3 with appropriate href attribute -->
+            <a href="https://www.youtube.com/channel/UCyk1OYH6lj58k-mDU8ACVqQ" target="_blank">
+                <img src="client3-logo.jpg" alt="Client 3">
+            </a>
+            <p> Jharkhand Drishti News offers the localised news of Jharkhand. Covers Political issues related to Jharkhand.</p>
+        </div>
+        
+        <!-- Client 4 -->
+        <div class="client-card">
+            <!-- Added anchor tag for Client 4 with appropriate href attribute -->
+            <a href="https://www.facebook.com/people/Desi-Home-Trends/61563140234274/?mibextid=ZbWKwL" target="_blank">
+                <img src="client4-logo.jpg" alt="Client 4">
+            </a>
+            <p>DesiHomeTrends focuses on manufacturing kitchen products and transforming the way mega kitchens operate.</p>
+        </div>
+        
+        <!-- Client 5 -->
+        <div class="client-card">
+            <!-- Added anchor tag for Client 5 with appropriate href attribute -->
+            <a href="https://www.instagram.com/kunaldairyandsweets/profilecard/?igsh=OHptbTh1Ym05aTZn" target="_blank">
+                <img src="client5-logo.jpg" alt="Client 5">
+            </a>
+            <p>Kunal Dairy and Sweets is known for its expertise in Food Products such as Namkeens, Sweets and various other delicacies.</p>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Core Members Section -->
+    <section id="core-members" class="core-members">
+        <h2>Core Members</h2>
+        <div class="core-members-grid">
+            <div class="member-card">
+                <img src="member1.jpg" alt="Mayank Jain">
+                <h3>Mayank Jain</h3>
+                <p>Chief Executive Officer</p>
+            </div>
+            <div class="member-card">
+                <img src="member2.jpg" alt="Akshansh Sharma">
+                <h3>Akshansh Sharma</h3>
+                <p>Chief Technology Officer</p>
+            </div>
+            <div class="member-card">
+                <img src="member3.jpg" alt="Girish Mishra">
+                <h3>Girish Mishra</h3>
+                <p>Chief Operating Officer</p>
+            </div>
+            <div class="member-card">
+                <img src="member4.jpg" alt="Mayank Wanjari">
+                <h3>Mayank Wanjari</h3>
+                <p>Head of Development</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Us Section -->
+    <section id="contact" class="contact">
+        <h2>Contact Us</h2>
+        <form class="contact-form">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea rows="5" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Dattva-Yaan. All rights reserved.</p>
+        <div class="social-icons">
+            <a href="https://facebook.com/groups/1464243454166837/"><img src="facebook-icon.png" alt="Facebook"></a>
+            <a href="https://www.instagram.com/dattva_yaan/profilecard/?igsh=MWptY2wwcGRoZHVyeA=="><img src="instagram-icon.png" alt="Instagram"></a>
+            <a href="https://www.whatsapp.com/channel/0029VasA4YqHFxP3DqEPAX2N"><img src="whatsapp-icon.png" alt="WhatsApp"></a>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll animations
+        window.addEventListener('scroll', function() {
+            document.querySelectorAll('section').forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 100) {
+                    section.classList.add('scroll-visible');
+                }
+            });
+        });
+
+        // Preloader
+        window.addEventListener('load', function() {
+            document.getElementById('preloader').style.display = 'none';
+        });
+    </script>
+
+</body>
+</html>
